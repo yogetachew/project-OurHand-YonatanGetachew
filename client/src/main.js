@@ -289,11 +289,11 @@ function buildUI() {
   const closeBtn = document.createElement('button');
   closeBtn.textContent = 'Open Hand';
   closeBtn.onclick = () => {
-    setFingerValue('thumb', 45);
-    setFingerValue('index', 45);
-    setFingerValue('middle', 45);
-    setFingerValue('ring', 45);
-    setFingerValue('pinky', 45);
+    setFingerValue('thumb', 90);
+    setFingerValue('index', 90);
+    setFingerValue('middle', 90);
+    setFingerValue('ring', 90);
+    setFingerValue('pinky', 90);
     syncAll();
   };
 
@@ -301,10 +301,10 @@ function buildUI() {
   pointBtn.textContent = 'Point';
   pointBtn.onclick = () => {
     setFingerValue('thumb', 20);
-    setFingerValue('index', 0);
-    setFingerValue('middle', 45);
-    setFingerValue('ring', 45);
-    setFingerValue('pinky', 45);
+    setFingerValue('index', 90);
+    setFingerValue('middle', 0);
+    setFingerValue('ring', 0);
+    setFingerValue('pinky', 0);
     syncAll();
   };
 
