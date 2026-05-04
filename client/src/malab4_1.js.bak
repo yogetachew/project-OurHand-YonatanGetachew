@@ -253,47 +253,6 @@ function createSliderRow(label, key) {
   return row;
 }
 
-// =========================================
-// Distance Slider
-// =========================================
-function createDistanceSliderRow() {
-  const row = document.createElement('div');
-  row.className = 'slider-row';
-
-  const labelEl = document.createElement('label');
-  labelEl.textContent = 'Sensor Distance:';
-
-  const slider = document.createElement('input');
-  slider.type = 'range';
-  slider.min = '5';
-  slider.max = '200';
-  slider.value = '30';
-
-  const valueEl = document.createElement('span');
-  valueEl.className = 'value';
-  valueEl.textContent = '30 cm';
-
-  slider.addEventListener('input', async () => {
-    valueEl.textContent = `${slider.value} cm`;
-
-    try {
-      await fetch('http://localhost:3000/distance', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ distance: Number(slider.value) })
-      });
-    } catch (error) {
-      console.error('Error sending distance:', error);
-    }
-  });
-
-  row.appendChild(labelEl);
-  row.appendChild(slider);
-  row.appendChild(valueEl);
-
-  return row;
-}
-
 function buildUI() {
   const panel = document.createElement('div');
   panel.id = 'control-panel';
@@ -312,7 +271,6 @@ function buildUI() {
   panel.appendChild(createSliderRow('Middle', 'middle'));
   panel.appendChild(createSliderRow('Ring', 'ring'));
   panel.appendChild(createSliderRow('Pinky', 'pinky'));
-  panel.appendChild(createDistanceSliderRow());
 
   const buttonRow = document.createElement('div');
   buttonRow.className = 'button-row';

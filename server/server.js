@@ -70,7 +70,26 @@ app.post('/hand', (req, res) => {
       error: 'Serial port not open'
     });
   }
- 
+  // show the distance
+app.post('/distance', (req, res) => {
+  const distance = req.body.distance;
+
+  console.log("Distance request received:", distance);
+
+  if (distance === undefined) {
+    return res.status(400).json({ error: 'No distance received' });
+  }
+
+  const command = `DIST:${distance}\n`;
+
+  if (port && port.isOpen) {
+    port.write(command);
+    console.log('Sent to Arduino:', command);
+  }
+
+  res.json({ success: true, distance });
+});
+
   port.write(line, (err) => {
     if (err) {
       return res.status(500).json({
